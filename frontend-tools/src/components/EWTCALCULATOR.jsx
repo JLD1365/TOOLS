@@ -76,44 +76,47 @@ const EWTCALCULATOR = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <motion.div
-        className="card w-full max-w-md bg-white shadow-xl p-6"
+        className="card w-full max-w-md bg-white shadow-xl p-6 sm:max-w-lg md:max-w-xl"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-2xl font-bold text-center mb-4">EWT Calculator</h1>
+        <h1 className="text-2xl font-bold text-center mb-4 sm:text-3xl">EWT Calculator</h1>
         <div className="form-control mb-4">
           <label className="label">
-            <span className="label-text">Original Amount:</span>
+            <span className="label-text text-sm sm:text-base">Original Amount:</span>
           </label>
           <input
             type="text"
             value={originalAmount}
             onChange={(e) => handleInputChange(e.target.value)}
             placeholder="Enter amount"
-            className="input input-bordered w-full"
+            className="input input-bordered w-full text-sm sm:text-base"
           />
           {originalAmount && (
-            <p className="mt-2 text-sm text-neutral-500 font-bold">
-              In Words: {numberToWords(parseFloat(originalAmount.replace(/,/g, '')))} only
-            </p>
+            <div className="mt-2">
+              <p className="text-xs sm:text-sm text-neutral-500 font-bold">In Words:</p>
+              <p className="text-xs sm:text-sm text-neutral-500 font-bold">
+                {numberToWords(parseFloat(originalAmount.replace(/,/g, '')))} only
+              </p>
+            </div>
           )}
         </div>
         <motion.div
-          className="stats shadow bg-gray-50"
+          className="stats shadow bg-gray-50 flex flex-col sm:flex-row"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
         >
           <div className="stat">
-            <div className="stat-title">EWT</div>
-            <div className="stat-value text-primary">
+            <div className="stat-title text-xs sm:text-sm">EWT</div>
+            <div className="stat-value text-primary text-lg sm:text-xl">
             {parseFloat(ewt).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </div>
           </div>
           <div className="stat">
-            <div className="stat-title">Gross/Total Sales</div>
-            <div className="stat-value text-secondary">
+            <div className="stat-title text-xs sm:text-sm">Gross/Total Sales</div>
+            <div className="stat-value text-secondary text-lg sm:text-xl">
             {parseFloat(grossSales).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </div>
           </div>
