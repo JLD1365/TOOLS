@@ -73,6 +73,12 @@ const EWTCALCULATOR = () => {
     }
   };
 
+  const handleReset = () => {
+    setOriginalAmount('0');
+    setEwt(0);
+    setGrossSales(0);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <motion.div
@@ -86,13 +92,23 @@ const EWTCALCULATOR = () => {
           <label className="label">
             <span className="label-text text-sm sm:text-base">Original Amount:</span>
           </label>
-          <input
-            type="text"
-            value={originalAmount}
-            onChange={(e) => handleInputChange(e.target.value)}
-            placeholder="Enter amount"
-            className="input input-bordered w-full text-sm sm:text-base"
-          />
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={originalAmount}
+              onChange={(e) => handleInputChange(e.target.value)}
+              placeholder="Enter amount"
+              className="input input-bordered w-full text-sm sm:text-base"
+            />
+            <button
+              type="button"
+              onClick={handleReset}
+              className="btn btn-outline btn-error text-xs sm:text-sm"
+              title="Reset Original Amount"
+            >
+              Reset
+            </button>
+          </div>
           {originalAmount && (
             <div className="mt-2">
               <p className="text-xs sm:text-sm text-neutral-500 font-bold">In Words:</p>
