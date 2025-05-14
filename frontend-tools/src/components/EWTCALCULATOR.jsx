@@ -56,6 +56,13 @@ const EWTCALCULATOR = () => {
       numericValue = numericValue.slice(1);
     }
 
+    if (numericValue === '') {
+      setOriginalAmount('');
+      setGrossSales(0);
+      setEwt(0);
+      return;
+    }
+
     const [integerPart, decimalPart] = numericValue.split('.');
     const formattedInteger = parseInt(integerPart || 0).toLocaleString();
     const formattedValue = decimalPart !== undefined ? `${formattedInteger}.${decimalPart}` : formattedInteger;
@@ -97,7 +104,7 @@ const EWTCALCULATOR = () => {
               type="text"
               value={originalAmount}
               onChange={(e) => handleInputChange(e.target.value)}
-              placeholder="Enter amount"
+              placeholder="0"
               className="input input-bordered w-full text-sm sm:text-base"
             />
             <button
